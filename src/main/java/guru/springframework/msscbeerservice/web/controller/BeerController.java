@@ -1,6 +1,6 @@
 package guru.springframework.msscbeerservice.web.controller;
 
-import guru.springframework.msscbeerservice.web.domain.BeerDto;
+import guru.springframework.msscbeerservice.web.model.BeerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
