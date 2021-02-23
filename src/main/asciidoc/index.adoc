@@ -1,0 +1,10 @@
+= SFG Brewery Order Service Docs
+Marc;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+
+Sample application.
+
+`BeerOrderController`
+
