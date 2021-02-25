@@ -27,7 +27,7 @@ import static org.springframework.restdocs.snippet.Attributes.key;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(RestDocumentationExtension.class)
-@AutoConfigureRestDocs
+@AutoConfigureRestDocs(uriHost = "dev.springframework.guru", uriPort = 80)
 @WebMvcTest(BeerController.class)
 class BeerControllerTest {
 
