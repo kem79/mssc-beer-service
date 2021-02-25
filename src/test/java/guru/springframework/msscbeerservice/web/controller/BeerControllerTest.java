@@ -48,7 +48,7 @@ class BeerControllerTest {
                 .param("iscold", "yes")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(document("v1/beer",
+                .andDo(document("v1/beer-get",
                         pathParameters(
                                 parameterWithName("beerId").description("UUID of the desired beer to get")
                         ),
@@ -83,7 +83,7 @@ class BeerControllerTest {
         ConstrainedFields fields = new ConstrainedFields(BeerDto.class);
 
         // when
-        mockMvc.perform(post("/api/v1/beer/")
+        mockMvc.perform(post("v1/beer-new")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
                 .andExpect(status().isCreated())
@@ -112,7 +112,7 @@ class BeerControllerTest {
                 .build();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
-        mockMvc.perform(put("/api/v1/beer/" + UUID.randomUUID().toString())
+        mockMvc.perform(put("v1/beer-update" + UUID.randomUUID().toString())
         .contentType(MediaType.APPLICATION_JSON)
         .content(beerDtoJson))
                 .andExpect(status().isNoContent());
