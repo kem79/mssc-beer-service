@@ -83,11 +83,11 @@ class BeerControllerTest {
         ConstrainedFields fields = new ConstrainedFields(BeerDto.class);
 
         // when
-        mockMvc.perform(post("v1/beer-new")
+        mockMvc.perform(post("/api/v1/beer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
                 .andExpect(status().isCreated())
-                .andDo(document("v1/beer",
+                .andDo(document("v1/beer-new",
                         requestFields(
                                 fields.withPath("id").ignored(),
                                 fields.withPath("version").ignored(),
@@ -112,7 +112,7 @@ class BeerControllerTest {
                 .build();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
-        mockMvc.perform(put("v1/beer-update" + UUID.randomUUID().toString())
+        mockMvc.perform(put("/api/v1/beer/" + UUID.randomUUID().toString())
         .contentType(MediaType.APPLICATION_JSON)
         .content(beerDtoJson))
                 .andExpect(status().isNoContent());

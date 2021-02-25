@@ -8,3 +8,13 @@ Sample application.
 
 `BeerOrderController`
 
+GET BEER
+
+Make a request using cURL:
+
+include::{snippets}/v1/beer-get/curl-request.adoc[]
+
+Make a request using HTTP request:
+
+include::{snippets}/v1/beer-get/http-request.adoc[]
+
