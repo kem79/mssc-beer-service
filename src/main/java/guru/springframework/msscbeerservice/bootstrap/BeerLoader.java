@@ -13,7 +13,7 @@ public class BeerLoader implements CommandLineRunner {
     public static final String BEER_1_UPC = "0631234200036";
     public static final String BEER_2_UPC = "0631234200037";
     public static final String BEER_3_UPC = "0631234200038";
-    public static final UUID BEER_1_UUID = "be3403e9-97bc-4288-a39f-a8ba0a95521d";
+    public static final UUID BEER_1_UUID = UUID.fromString("0a818933-087d-47f2-ad83-2f986ed087eb");
 
     private final BeerRepository beerRepository;
 
@@ -39,7 +39,7 @@ public class BeerLoader implements CommandLineRunner {
 
             beerRepository.save(Beer.builder()
                     .beerName("Galaxy Cat")
-                    .beerStyle("PALE ALE")
+                    .beerStyle("PALE_ALE")
                     .quantityToBrew(200)
                     .minOnHand(12)
                     .upc(BEER_2_UPC)
@@ -48,7 +48,7 @@ public class BeerLoader implements CommandLineRunner {
 
             beerRepository.save(Beer.builder()
                     .beerName("No Hammer on the Bar")
-                    .beerStyle("PALE ALE")
+                    .beerStyle("PALE_ALE")
                     .quantityToBrew(200)
                     .minOnHand(12)
                     .upc(BEER_3_UPC)

@@ -20,14 +20,18 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class BeerServiceImpl implements BeerService {
-    BeerRepository beerRepository;
-    BeerMapper beerMapper;
+    final BeerRepository beerRepository;
+    final BeerMapper beerMapper;
 
     @Override
-    public BeerDto getById(UUID beerID) {
-        return beerMapper.beerToBeerDto(
-                beerRepository.findById(beerID).orElseThrow(NotFoundException::new)
-        );
+    public BeerDto getById(UUID beerID, Boolean showInventoryOnHand) {
+        if(Boolean.TRUE.equals(showInventoryOnHand)){
+            return beerMapper.beerToBeerDtoWithInventory(
+                    beerRepository.findById(beerID).orElseThrow(NotFoundException::new));
+        } else {
+            return beerMapper.beerToBeerDto(
+                    beerRepository.findById(beerID).orElseThrow(NotFoundException::new));
+        }
     }
 
     @Override
@@ -50,7 +54,7 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest) {
+    public BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest, Boolean showInventoryOnHand) {
         BeerPagedList beerPagedList;
         Page<Beer> beerPage;
 
@@ -64,16 +68,29 @@ public class BeerServiceImpl implements BeerService {
             beerPage = beerRepository.findAll(pageRequest);
         }
 
-        beerPagedList = new BeerPagedList(
-                beerPage
-                    .getContent()
-                    .stream()
-                    .map(beerMapper::beerToBeerDto)
-                    .collect(Collectors.toList()),
-                PageRequest
-                    .of(beerPage.getPageable().getPageNumber(),
-                            beerPage.getPageable().getPageSize()),
-                beerPage.getTotalElements());
+        if(Boolean.TRUE.equals(showInventoryOnHand)){
+            beerPagedList = new BeerPagedList(
+                    beerPage
+                            .getContent()
+                            .stream()
+                            .map(beerMapper::beerToBeerDtoWithInventory)
+                            .collect(Collectors.toList()),
+                    PageRequest
+                            .of(beerPage.getPageable().getPageNumber(),
+                                    beerPage.getPageable().getPageSize()),
+                    beerPage.getTotalElements());
+        } else {
+            beerPagedList = new BeerPagedList(
+                    beerPage
+                            .getContent()
+                            .stream()
+                            .map(beerMapper::beerToBeerDto)
+                            .collect(Collectors.toList()),
+                    PageRequest
+                            .of(beerPage.getPageable().getPageNumber(),
+                                    beerPage.getPageable().getPageSize()),
+                    beerPage.getTotalElements());
+        }
 
         return beerPagedList;
     }
