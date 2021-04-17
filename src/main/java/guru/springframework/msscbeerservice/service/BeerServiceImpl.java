@@ -39,6 +39,7 @@ public class BeerServiceImpl implements BeerService {
         }
     }
 
+    @Cacheable(cacheNames = "beerUpcCache", key = "#upc")
     @Override
     public BeerDto getBeerByUpc(String upc) {
         log.info("Get beer by UPC " + upc);
