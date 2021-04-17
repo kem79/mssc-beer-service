@@ -9,6 +9,7 @@ import guru.springframework.msscbeerservice.web.model.BeerDto;
 import guru.springframework.msscbeerservice.web.model.BeerPagedList;
 import guru.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class BeerServiceImpl implements BeerService {
     final BeerRepository beerRepository;
     final BeerMapper beerMapper;
@@ -35,6 +37,13 @@ public class BeerServiceImpl implements BeerService {
             return beerMapper.beerToBeerDto(
                     beerRepository.findById(beerID).orElseThrow(NotFoundException::new));
         }
+    }
+
+    @Override
+    public BeerDto getBeerByUpc(String upc) {
+        log.info("Get beer by UPC " + upc);
+        return beerMapper.beerToBeerDto(
+                beerRepository.findBeerByUpc(upc).orElseThrow(NotFoundException::new));
     }
 
     @Override
