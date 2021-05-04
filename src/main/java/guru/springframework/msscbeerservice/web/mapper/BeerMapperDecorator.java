@@ -1,8 +1,8 @@
 package guru.springframework.msscbeerservice.web.mapper;
 
+import guru.sfg.common.events.BeerDto;
 import guru.springframework.msscbeerservice.domain.Beer;
 import guru.springframework.msscbeerservice.service.inventory.BeerInventoryService;
-import guru.springframework.msscbeerservice.web.model.BeerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BeerMapperDecorator implements BeerMapper {
