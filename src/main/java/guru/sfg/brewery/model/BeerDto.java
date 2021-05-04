@@ -1,6 +1,7 @@
-package guru.sfg.common.events;
+package guru.sfg.brewery.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import guru.sfg.brewery.model.event.BeerStyleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

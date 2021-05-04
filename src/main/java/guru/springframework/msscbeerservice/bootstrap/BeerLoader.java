@@ -1,6 +1,6 @@
 package guru.springframework.msscbeerservice.bootstrap;
 
-import guru.sfg.common.events.BeerStyleEnum;
+import guru.sfg.brewery.model.event.BeerStyleEnum;
 import guru.springframework.msscbeerservice.domain.Beer;
 import guru.springframework.msscbeerservice.repository.BeerRepository;
 import lombok.RequiredArgsConstructor;
