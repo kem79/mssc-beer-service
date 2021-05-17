@@ -12,7 +12,7 @@ import java.util.UUID;
 /**
  * Created by marecm on 5/12/2021
  */
-@FeignClient("inventory-service")
+@FeignClient(value = "inventory-service", fallback = InventoryServiceFeignClientFailover.class)
 public interface InventoryServiceFeignClient {
 
     @GetMapping(value = BeerInventoryServiceRestTemplateImpl.INVENTORY_PATH)
